@@ -4,10 +4,16 @@ function balanced(str) {
     }
 
     const counts = {};
-    str.split("").forEach((chr) => (chr in counts) ? counts[chr]++ : counts[chr] = 1);
+    for (let i = 0; i < str.length; i++) {
+        const chr = str[i];
+        if (chr in counts) {
+            counts[chr]++;
+        } else {
+            counts[chr] = 1;
+        }
+    }
     return Object.values(counts).some((val, i, arr) => {
         return !(i > 0 && val !== arr[i - 1]);
-
     });
 }
 
